@@ -9,6 +9,7 @@ class BackupClient:
         self.Token_ya = Token_YA
 
     def download_photos(self, count_photo=5):
+
         api = requests.get('https://api.vk.com/method/photos.get', params={
             'owner_id': self.vk_id,
             'access_token': self.Token_vk,
@@ -45,6 +46,11 @@ class BackupClient:
         print('json файл создан')
 
     def upload_photos(self):
+        api_folder = requests.put('https://cloud-api.yandex.net/v1/disk/resources',
+                                  headers={'Authorization': Token_YA},
+                                  params={'path': 'image'})
+        print(api_folder.text)
+        print('Создана новая папка Image на Яндекс диске')
         for name_ya in self.name_list:
             api_ya = requests.get('https://cloud-api.yandex.net/v1/disk/resources/upload',
                                   headers={'Authorization': Token_YA},
