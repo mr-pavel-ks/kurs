@@ -49,7 +49,6 @@ class BackupClient:
         api_folder = requests.put('https://cloud-api.yandex.net/v1/disk/resources',
                                   headers={'Authorization': Token_YA},
                                   params={'path': 'image'})
-        print(api_folder.text)
         print('Создана новая папка Image на Яндекс диске')
         for name_ya in self.name_list:
             api_ya = requests.get('https://cloud-api.yandex.net/v1/disk/resources/upload',
